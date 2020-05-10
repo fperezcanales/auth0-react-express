@@ -1,5 +1,5 @@
 {
-  "domain": "spa-test.auth0.com",
-  "clientId": "melxSZVFgL9ONwTaggwozHOsjeTVvJOF",
-  "audience": "https://api.allthingsauth.dev"
+  "domain": "dev-delicias.auth0.com",
+  "clientId": "n248b7UwtXiMisRSBXg0ajHvqBKly8TS",
+  "audience": "https://dev-delicias.auth0.com/api/v2/"
 }

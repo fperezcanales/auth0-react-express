@@ -17,6 +17,11 @@ const NavBar = () => {
             Home
           </Link>
         </li>
+        <li className="menu__group">
+          <Link className="menu__link" to="/business">
+            Mi Negocio
+          </Link>
+        </li>
         {isAuthenticated && (
           <li className="menu__group">
             <Link className="menu__link" to="/people">
