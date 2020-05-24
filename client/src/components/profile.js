@@ -11,12 +11,14 @@ const Profile = () => {
 
   return (
     <>
-      <h3>User name: {user.name}</h3>
-      <p>Email: {user.email}</p>
-      <p>ID token content:</p>
-      <pre>
-        <code>{JSON.stringify(user, null, 2)}</code>
-      </pre>
+      <div>
+        <h3>User name: {user && user.name}</h3>
+        <p>Email: {user && user.email}</p>
+        <p>ID token content:</p>
+        <pre>
+          <code>{user && JSON.stringify(user, null, 2)}</code>
+        </pre>
+      </div>
     </>
   );
 };

@@ -14,7 +14,7 @@ const People = () => {
 
     const token = await getTokenSilently();
 
-    const res = await fetch(`${baseUrl}/people`, {
+    const res = await fetch(`${baseUrl}/api/people`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

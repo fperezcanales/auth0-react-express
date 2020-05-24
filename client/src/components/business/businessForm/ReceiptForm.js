@@ -23,114 +23,69 @@ export default function ReceiptForm({
 
   return (
     <>
-      <InputField
-        label="Nombre de empresa"
-        id="businessName"
-        name="businessName"
-        onChange={onChange('businessName')}
-        onBlur={handleBlur}
-        value={values.businessName}
-        type="text"
-        error={
-          getIn(touched, 'businessName') &&
-          Boolean(getIn(errors, 'businessName'))
-        }
-        helperText={
-          getIn(touched, 'businessName') && getIn(errors, 'businessName')
-            ? getIn(errors, 'businessName')
-            : 'Ej: Av normadie'
-        }
-      />
-      <InputField
-        label="RUT Negocio"
-        id="businessDNI"
-        name="businessDNI"
-        onChange={onChange('businessDNI')}
-        onBlur={handleBlur}
-        value={values.businessDNI}
-        type="text"
-        error={
-          getIn(touched, 'businessDNI') &&
-          Boolean(getIn(errors, 'businessDNI'))
-        }
-        helperText={
-          getIn(touched, 'businessDNI') && getIn(errors, 'businessDNI')
-            ? getIn(errors, 'businessDNI')
-            : 'Ej: Av normadie'
-        }
-      />
-      <InputField
-        label="Representante legal"
-        id="businessRepresentative"
-        name="businessRepresentative"
-        onChange={onChange('businessRepresentative')}
-        onBlur={handleBlur}
-        value={values.businessRepresentative}
-        type="text"
-        error={
-          getIn(touched, 'businessRepresentative') &&
-          Boolean(getIn(errors, 'businessRepresentative'))
-        }
-        helperText={
-          getIn(touched, 'businessRepresentative') && getIn(errors, 'businessRepresentative')
-            ? getIn(errors, 'businessRepresentative')
-            : 'Ej: Av normadie'
-        }
-      />
-      <InputField
-        label="Correo electrónico"
-        name="businessEmail"
-        onChange={onChange('businessEmail')}
-        onBlur={handleBlur}
-        value={values.businessEmail}
-        type="text"
-        error={
-          getIn(touched, 'businessEmail') &&
-          Boolean(getIn(errors, 'businessEmail'))
-        }
-        helperText={
-          getIn(touched, 'businessEmail') && getIn(errors, 'businessEmail')
-            ? getIn(errors, 'businessEmail')
-            : 'Ej: Av normadie'
-        }
-      />
-      <InputField
-        label="Fono"
-        id="businessFono"
-        name="businessFono"
-        onChange={onChange('businessFono')}
-        onBlur={handleBlur}
-        value={values.businessFono}
-        type="text"
-        error={
-          getIn(touched, 'businessFono') &&
-          Boolean(getIn(errors, 'businessFono'))
-        }
-        helperText={
-          getIn(touched, 'businessFono') && getIn(errors, 'businessFono')
-            ? getIn(errors, 'businessFono')
-            : 'Ej: Av normadie'
-        }
-      />
-      <InputField
-        label="Actividad económica"
-        id="businessEconomicActivity"
-        name="businessEconomicActivity"
-        onChange={onChange('businessEconomicActivity')}
-        onBlur={handleBlur}
-        value={values.businessEconomicActivity}
-        type="text"
-        error={
-          getIn(touched, 'businessEconomicActivity') &&
-          Boolean(getIn(errors, 'businessEconomicActivity'))
-        }
-        helperText={
-          getIn(touched, 'businessEconomicActivity') && getIn(errors, 'businessEconomicActivity')
-            ? getIn(errors, 'businessEconomicActivity')
-            : 'Ej: Av normadie'
-        }
-      />
-      <InputField
+      <h4>Informacion de comercial</h4>
+      <div className="sections-info_1">
+        <InputField
+          label="Nombre del negocio"
+          id="businessName"
+          name="businessName"
+          onChange={onChange('businessName')}
+          onBlur={handleBlur}
+          value={values.businessName}
+          type="text"
+          error={
+            getIn(touched, 'businessName') &&
+            Boolean(getIn(errors, 'businessName'))
+          }
+          helperText={
+            getIn(touched, 'businessName') && getIn(errors, 'businessName')
+              ? getIn(errors, 'businessName')
+              : ''
+          }
+        />
+      </div>
+
+      <div className="sections-info_2">
+        <InputField
+          label="RUT Negocio"
+          id="businessDNI"
+          name="businessDNI"
+          onChange={onChange('businessDNI')}
+          onBlur={handleBlur}
+          value={values.businessDNI}
+          type="text"
+          error={
+            getIn(touched, 'businessDNI') &&
+            Boolean(getIn(errors, 'businessDNI'))
+          }
+          helperText={
+            getIn(touched, 'businessDNI') && getIn(errors, 'businessDNI')
+              ? getIn(errors, 'businessDNI')
+              : ''
+          }
+        />
+        <InputField
+          label="Nombre representante"
+          id="businessRepresentative"
+          name="businessRepresentative"
+          onChange={onChange('businessRepresentative')}
+          onBlur={handleBlur}
+          value={values.businessRepresentative}
+          type="text"
+          error={
+            getIn(touched, 'businessRepresentative') &&
+            Boolean(getIn(errors, 'businessRepresentative'))
+          }
+          helperText={
+            getIn(touched, 'businessRepresentative') && getIn(errors, 'businessRepresentative')
+              ? getIn(errors, 'businessRepresentative')
+              : ''
+          }
+        />
+      </div>
+
+
+      {/*<InputField
         label="Logo"
         id="businessLogo"
         name="businessLogo"
@@ -147,20 +102,78 @@ export default function ReceiptForm({
             ? getIn(errors, 'businessLogo')
             : 'Ej: Av normadie'
         }
-      />
+      />*/}
+
+      <h4>Informacion de contacto</h4>
+      <div className="sections-info_2">
+        <InputField
+          label="Fono"
+          id="businessFono"
+          name="businessFono"
+          onChange={onChange('businessFono')}
+          onBlur={handleBlur}
+          value={values.businessFono}
+          type="text"
+          error={
+            getIn(touched, 'businessFono') &&
+            Boolean(getIn(errors, 'businessFono'))
+          }
+          helperText={
+            getIn(touched, 'businessFono') && getIn(errors, 'businessFono')
+              ? getIn(errors, 'businessFono')
+              : ''
+          }
+        />
+        <InputField
+          label="Correo electrónico"
+          name="businessEmail"
+          onChange={onChange('businessEmail')}
+          onBlur={handleBlur}
+          value={values.businessEmail}
+          type="text"
+          error={
+            getIn(touched, 'businessEmail') &&
+            Boolean(getIn(errors, 'businessEmail'))
+          }
+          helperText={
+            getIn(touched, 'businessEmail') && getIn(errors, 'businessEmail')
+              ? getIn(errors, 'businessEmail')
+              : ''
+          }
+        />
+      </div>
+
+      {/*<InputField
+        label="Actividad económica"
+        id="businessEconomicActivity"
+        name="businessEconomicActivity"
+        onChange={onChange('businessEconomicActivity')}
+        onBlur={handleBlur}
+        value={values.businessEconomicActivity}
+        type="text"
+        error={
+          getIn(touched, 'businessEconomicActivity') &&
+          Boolean(getIn(errors, 'businessEconomicActivity'))
+        }
+        helperText={
+          getIn(touched, 'businessEconomicActivity') && getIn(errors, 'businessEconomicActivity')
+            ? getIn(errors, 'businessEconomicActivity')
+            : 'Ej: Av normadie'
+        }
+      />*/}
     </>
   );
 }
 
-/*ReceiptForm.validationSchema = Yup.object().shape({
+ReceiptForm.validationSchema = Yup.object().shape({
   businessName: Yup.string().required('Campo requerido'),
   businessDNI: Yup.string().required('Campo requerido'),
   businessRepresentative: Yup.string().required('Campo requerido'),
   businessEmail: Yup.string().required('Campo requerido'),
   businessFono: Yup.string().required('Campo requerido'),
-  businessEconomicActivity: Yup.string().required('Campo requerido'),
-  businessLogo: Yup.string().required('Campo requerido'),
-}); */
+  /*businessEconomicActivity: Yup.string().required('Campo requerido'),*/
+  /*businessLogo: Yup.string().required('Campo requerido'),*/
+});
 ReceiptForm.title = 'Ingrese datos de su negocio';
 ReceiptForm.initialValues = {
   businessName: '',
@@ -168,8 +181,8 @@ ReceiptForm.initialValues = {
   businessRepresentative: '',
   businessEmail: '',
   businessFono: '',
-  businessEconomicActivity: '',
-  businessLogo: '',
+  /*businessEconomicActivity: '',
+  businessLogo: '',*/
 };
 ReceiptForm.onSubmit = (onSubmit) => (data, options) => {
   const businessActivity = { businessActivity: { ...data } };

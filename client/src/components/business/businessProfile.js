@@ -1,66 +1,97 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/jsx-one-expression-per-line */
-import React from 'react';
-import { Formik } from 'formik';
+/* eslint-disable camelcase */
+import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '../../auth/react-auth0-spa';
-import './form.css';
-import Wizard from '../../ui-kit/wizard/Wizard';
-import AddressForm from './businessForm/AddressForm';
-import ReceiptForm from './businessForm/ReceiptForm';
-import PaymentForm from './businessForm/PaymentForm';
+
+// import './../table.css';
 
 const BusinessProfile = () => {
-  const { loading, user } = useAuth0();
-  const pages = [PaymentForm, ReceiptForm, AddressForm];
-  const [apc, setApc] = React.useState({});
-  // eslint-disable-next-line no-constant-condition
-  if (false && loading && !user) {
-    return <div>Loading...</div>;
+  const [isLoading, setIsLoading] = useState(true);
+  const [businesses, setBusinesses] = useState();
+  const { getTokenSilently } = useAuth0();
+
+  const fetchData = async () => {
+    const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+
+    const token = await getTokenSilently();
+
+    const res = await fetch(`${baseUrl}/api/business`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+      },
+    });
+    res
+      .json()
+      .then((json) => {
+        setBusinesses(json.data);
+        setIsLoading(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(
+    () => {
+      fetchData();
+    },
+    // eslint-disable-next-line
+    []
+  );
+
+  if (isLoading) {
+    return (
+      <>
+        <div className="container">
+          <h1>Star Wars Characters!</h1>
+          <p>Loading People...</p>
+        </div>
+      </>
+    );
   }
 
-  const renderPage = ({ navigateNext, pageIndex, isLast, Page, NextPage }) => {
-    const onSubmit = (data, { resetForm }) => {
-      navigateNext();
-    };
-    return (
-      <Formik
-        initialValues={Page.initialValues}
-        validateOnMount={true}
-        validationSchema={Page.validationSchema}
-        onSubmit={Page.onSubmit(onSubmit)}
-      >
-        {(props) => {
-          const {
-            handleSubmit,
-            handleChange,
-            setFieldTouched,
-            isValid,
-          } = props;
-
-          const onChange = (name) => (event) => {
-            handleChange(event);
-            setFieldTouched(name, true, false);
-          };
-
-          return (
-            <form onSubmit={handleSubmit}>
-              <h1>{Page.title}</h1>
-              <div>
-                <Page apc={apc} onChange={onChange} {...props} />
-                <section style={{ margin: '20px 20px 40px 20px' }}>
-                  <label> L</label>
-                  <input type="submit" disabled={!isValid} value='Siguiente' />
-                </section>
-              </div>
-            </form>
-          );
-        }}
-      </Formik>
-    );
+  const renderRows = () => {
+    return businesses.map((business) => {
+      const { businessActivity, paymentMethod, addressComercial } = business;
+      const {
+        businessName,
+        businessDNI,
+        businessRepresentative,
+        businessEmail,
+        businessFono,
+      } = businessActivity;
+      return (
+        <li className="table-row" key={businessName}>
+          <div className="col col-1">{businessName}</div>
+          <div className="col col-2">{businessDNI}</div>
+          <div className="col col-3">{businessRepresentative}</div>
+          <div className="col col-4">{businessEmail}</div>
+          <div className="col col-5">{businessFono}</div>
+        </li>
+      );
+    });
   };
-  return <Wizard pages={pages}>{renderPage}</Wizard>;
+
+  return (
+    <>
+      <div className="container">
+        <h1>Star Wars Characters!</h1>
+        <ul className="responsive-table">
+          <li className="table-header">
+            <div className="col col-1">Name</div>
+            <div className="col col-2">Gender</div>
+            <div className="col col-3">Species</div>
+            <div className="col col-4">Birth Year</div>
+            <div className="col col-5">Height</div>
+          </li>
+          {renderRows()}
+        </ul>
+      </div>
+    </>
+  );
 };
 
 export default BusinessProfile;

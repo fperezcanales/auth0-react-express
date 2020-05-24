@@ -2,6 +2,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import { getIn } from 'formik';
+import * as Yup from 'yup';
 import { useAuth0 } from '../../../auth/react-auth0-spa';
 import InputField from '../../../ui-kit/inputField/InputField';
 
@@ -21,6 +22,7 @@ export default function PaymentForm({
 
   return (
     <>
+      <h4>Método de pago suscripción</h4>
       <InputField
         label="Tipo de cuenta"
         id="accountType"
@@ -36,7 +38,7 @@ export default function PaymentForm({
         helperText={
           getIn(touched, 'accountType') && getIn(errors, 'accountType')
             ? getIn(errors, 'accountType')
-            : 'Ej: Av normadie'
+            : ''
         }
       />
       <InputField
@@ -54,11 +56,11 @@ export default function PaymentForm({
         helperText={
           getIn(touched, 'accountBank') && getIn(errors, 'accountBank')
             ? getIn(errors, 'accountBank')
-            : 'Ej: Av normadie'
+            : ''
         }
       />
       <InputField
-        label="Nombre"
+        label="Nombre titular tarjeta"
         id="accountName"
         name="accountName"
         onChange={onChange('accountName')}
@@ -72,7 +74,7 @@ export default function PaymentForm({
         helperText={
           getIn(touched, 'accountName') && getIn(errors, 'accountName')
             ? getIn(errors, 'accountName')
-            : 'Ej: Av normadie'
+            : ''
         }
       />
       <InputField
@@ -90,7 +92,7 @@ export default function PaymentForm({
         helperText={
           getIn(touched, 'accountNumber') && getIn(errors, 'accountNumber')
             ? getIn(errors, 'accountNumber')
-            : 'Ej: Av normadie'
+            : ''
         }
       />
       <InputField
@@ -107,11 +109,11 @@ export default function PaymentForm({
         helperText={
           getIn(touched, 'accountExpireDate') && getIn(errors, 'accountExpireDate')
             ? getIn(errors, 'accountExpireDate')
-            : 'Ej: Av normadie'
+            : ''
         }
       />
       <InputField
-        label="Correo eletrónico"
+        label="Correo eletrónico para comprobante"
         id="accountEmail"
         name="accountEmail"
         onChange={onChange('accountEmail')}
@@ -125,13 +127,22 @@ export default function PaymentForm({
         helperText={
           getIn(touched, 'accountEmail') && getIn(errors, 'accountEmail')
             ? getIn(errors, 'accountEmail')
-            : 'Ej: Av normadie'
+            : ''
         }
       />
     </>
   );
 }
-
+PaymentForm.validationSchema = Yup.object().shape({
+  accountType: Yup.string().required('Campo requerido'),
+  accountBank: Yup.string().required('Campo requerido'),
+  accountName: Yup.string().required('Campo requerido'),
+  accountNumber: Yup.string().required('Campo requerido'),
+  accountExpireDate: Yup.string().required('Campo requerido'),
+  accountEmail: Yup.string().required('Campo requerido'),
+  /*businessEconomicActivity: Yup.string().required('Campo requerido'),*/
+  /*businessLogo: Yup.string().required('Campo requerido'),*/
+});
 PaymentForm.title = 'Ingrese datos de su medio de pago';
 PaymentForm.initialValues = {
   accountType: '',

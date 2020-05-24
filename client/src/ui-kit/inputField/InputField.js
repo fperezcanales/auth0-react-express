@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import './InputField.css';
 
 export default function InputField({
   id,
@@ -14,9 +15,9 @@ export default function InputField({
   type,
 }) {
   return (
-    <section style={{ margin: '20px 20px 40px 20px' }}>
-      <label htmlFor={name} style={error ? { color: 'red' } : {}}>
-        {label}
+    <section style={{ margin: '20px', display: 'flex', flexDirection: 'column-reverse' }}>
+      <label className={error ? 'error_text' : 'information_text'} id={id}>
+        {helperText}
       </label>
       <input
         id={id}
@@ -26,9 +27,11 @@ export default function InputField({
         value={value}
         disabled={disabled}
         type={type}
+        className="input_text_field"
+        autoComplete="off"
       />
-      <label name={`${id}Error`} id={id} style={error ? { color: 'red' } : { color: 'darkgrey'}} >
-        {helperText}
+      <label htmlFor={name} className='label_text' id={id}>
+        {label}
       </label>
     </section>
   );
@@ -36,6 +39,6 @@ export default function InputField({
 
 InputField.defaultProps = {
   value: '',
-  onChange: () => {},
+  onChange: () => { },
   isRequired: false,
 };

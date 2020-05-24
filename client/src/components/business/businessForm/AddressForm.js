@@ -23,42 +23,46 @@ export default function AddressForm({
 
   return (
     <>
-      <InputField
-        label="Calle"
-        id="addressStreet"
-        name="addressStreet"
-        onChange={onChange('addressStreet')}
-        onBlur={handleBlur}
-        value={values.addressStreet}
-        type="text"
-        error={
-          getIn(touched, 'addressStreet') &&
-          Boolean(getIn(errors, 'addressStreet'))
-        }
-        helperText={
-          getIn(touched, 'addressStreet') && getIn(errors, 'addressStreet')
-            ? getIn(errors, 'addressStreet')
-            : 'Ej: Av normadie'
-        }
-      />
-      <InputField
-        label="Número"
-        id="addressNumber"
-        name="addressNumber"
-        onChange={onChange('addressNumber')}
-        onBlur={handleBlur}
-        value={values.addressNumber}
-        type="text"
-        error={
-          getIn(touched, 'addressNumber') &&
-          Boolean(getIn(errors, 'addressNumber'))
-        }
-        helperText={
-          getIn(touched, 'addressNumber') && getIn(errors, 'addressNumber')
-            ? getIn(errors, 'addressNumber')
-            : 'Ej: Av normadie'
-        }
-      />
+      <h4>Dirección comercial</h4>
+      <div className="sections-info_2">
+        <InputField
+          label="Calle"
+          id="addressStreet"
+          name="addressStreet"
+          onChange={onChange('addressStreet')}
+          onBlur={handleBlur}
+          value={values.addressStreet}
+          type="text"
+          error={
+            getIn(touched, 'addressStreet') &&
+            Boolean(getIn(errors, 'addressStreet'))
+          }
+          helperText={
+            getIn(touched, 'addressStreet') && getIn(errors, 'addressStreet')
+              ? getIn(errors, 'addressStreet')
+              : ''
+          }
+        />
+        <InputField
+          label="Número"
+          id="addressNumber"
+          name="addressNumber"
+          onChange={onChange('addressNumber')}
+          onBlur={handleBlur}
+          value={values.addressNumber}
+          type="text"
+          error={
+            getIn(touched, 'addressNumber') &&
+            Boolean(getIn(errors, 'addressNumber'))
+          }
+          helperText={
+            getIn(touched, 'addressNumber') && getIn(errors, 'addressNumber')
+              ? getIn(errors, 'addressNumber')
+              : ''
+          }
+        />
+      </div>
+
       <InputField
         label="Detalle"
         id="addressDetail"
@@ -74,7 +78,7 @@ export default function AddressForm({
         helperText={
           getIn(touched, 'addressDetail') && getIn(errors, 'addressDetail')
             ? getIn(errors, 'addressDetail')
-            : 'Ej: Av normadie'
+            : ''
         }
       />
       <InputField
@@ -91,7 +95,7 @@ export default function AddressForm({
         helperText={
           getIn(touched, 'addressRegion') && getIn(errors, 'addressRegion')
             ? getIn(errors, 'addressRegion')
-            : 'Ej: Av normadie'
+            : ''
         }
       />
       <InputField
@@ -103,13 +107,12 @@ export default function AddressForm({
         value={values.addressCity}
         type="text"
         error={
-          getIn(touched, 'addressCity') &&
-          Boolean(getIn(errors, 'addressCity'))
+          getIn(touched, 'addressCity') && Boolean(getIn(errors, 'addressCity'))
         }
         helperText={
           getIn(touched, 'addressCity') && getIn(errors, 'addressCity')
             ? getIn(errors, 'addressCity')
-            : 'Ej: Av normadie'
+            : ''
         }
       />
       <InputField
@@ -121,13 +124,12 @@ export default function AddressForm({
         value={values.addressCommune}
         type="text"
         error={
-          getIn(touched, 'addressCommune') &&
-          Boolean(getIn(errors, 'addressCommune'))
+          getIn(touched, 'addressCommune') && Boolean(getIn(errors, 'addressCommune'))
         }
         helperText={
           getIn(touched, 'addressCommune') && getIn(errors, 'addressCommune')
             ? getIn(errors, 'addressCommune')
-            : 'Ej: Av normadie'
+            : ''
         }
       />
     </>
