@@ -15,6 +15,7 @@ const App = () => {
         </header>
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/home" exact component={Home} />
           <AuthenticatedRoute path="/profile" component={Profile} />
           <AuthenticatedRoute path="/people" component={People} />
         </Switch>
